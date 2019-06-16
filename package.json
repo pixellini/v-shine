@@ -11,13 +11,13 @@
     "Vue",
     "vue.js",
     "directive",
-    "ripple",
-    "wave",
+    "shine",
+    "shining",
+    "glass shine",
     "effect",
     "animation",
-    "material ripple",
-    "v-ripple",
-    "vue-ripple"
+    "v-shine",
+    "vue-shine"
   ],
   "scripts": {
     "start": "vue-cli-service serve",
