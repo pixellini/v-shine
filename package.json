@@ -8,16 +8,16 @@
     "url": "https://github.com/jacobgibellini/v-shine-effect"
   },
   "keywords": [
-      "Vue",
-      "vue.js",
-      "directive",
-      "ripple",
-      "wave",
-      "effect",
-      "animation",
-      "material ripple",
-      "v-ripple",
-      "vue-ripple"
+    "Vue",
+    "vue.js",
+    "directive",
+    "ripple",
+    "wave",
+    "effect",
+    "animation",
+    "material ripple",
+    "v-ripple",
+    "vue-ripple"
   ],
   "scripts": {
     "start": "vue-cli-service serve",
