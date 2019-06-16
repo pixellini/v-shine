@@ -1,13 +1,19 @@
 const shine = (el, binding) => {
-    const { event, time, ease, blur, opacity, size } = binding.value || {};
+    const { event, time, ease, blur, opacity, size, fromLeft } = binding.value || {};
+
+    // Constants
     const EVENT = event || 'mouseenter';
-    const TIME = time || 2; //seconds
-    const EASE = ease || 'linear';
-    const BLUR_AMOUNT = blur || 5; //px
+    const TIME = time || 1; //seconds
+    const EASE = ease || 'ease';
+    const BLUR_AMOUNT = blur || 3; //px
     const OPACITY = opacity || 0.3;
     const SHINE_HEIGHT = size || 30; //px
-    const SHINE_DELAY = TIME * 60; //ms
+    const SHINE_DELAY = TIME * 80; //ms
+    const FROM_LEFT = fromLeft === undefined ? true : fromLeft;
 
+    const SHOW_NEGATIVE = FROM_LEFT ? '-' : '';
+
+    // Toggles
     let isAnimating = false;
     let mouseEntered = false;
 
@@ -26,9 +32,9 @@ const shine = (el, binding) => {
     const createShineElement = (size, height) => {
         const element = document.createElement('div');
         element.style.position = 'absolute';
-        element.style.left = '-100%';
-        element.style.top = '-100%';
-        element.style.transform = 'rotate(-45deg) translate(-50%, -50%)';
+        element.style.left = `calc(${ SHOW_NEGATIVE }50% + ${ -SHINE_HEIGHT / 2 }px)`;
+        element.style.top = `calc(${ SHOW_NEGATIVE }50% + ${ -SHINE_HEIGHT / 2 }px)`;
+        element.style.transform = `rotate(${ SHOW_NEGATIVE }45deg) translate(-50%, -50%)`;
         element.style.backgroundColor = '#fff';
         element.style.height = height + 'px';
         element.style.width = size + 'px';
@@ -47,15 +53,21 @@ const shine = (el, binding) => {
         
         element.appendChild(container);
 
-        setTimeout(() => {
-            shine.style.left = (height + SHINE_HEIGHT) / 2 + 'px';
-            shine.style.top = (width + SHINE_HEIGHT) / 2 + 'px';
-        }, 40);
+        const h = height + SHINE_HEIGHT;
+        const w = width + SHINE_HEIGHT;
+
+        const left = (FROM_LEFT ? h / 2 : -h / 2) + 'px';
+        const top = (FROM_LEFT ? w / 2 : w * 2) + 'px';
 
         setTimeout(() => {
-            shineBack.style.left = (height + SHINE_HEIGHT) / 2 + 'px';
-            shineBack.style.top = (width + SHINE_HEIGHT) / 2 + 'px';
-        }, 40 + SHINE_DELAY);
+            shine.style.left = left;
+            shine.style.top = top;
+
+            setTimeout(() => {
+                shineBack.style.left = left;
+                shineBack.style.top = top;
+            }, SHINE_DELAY);
+        }, 40);
 
         setTimeout(() => {
             el.removeChild(container);

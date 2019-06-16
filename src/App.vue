@@ -1,6 +1,7 @@
 <template>
     <div id="app">
         <div class="shine" v-shine></div>
+        <div class="shine" v-shine="{ fromLeft: false }"></div>
         <div class="shine big" v-shine></div>
     </div>
 </template>
