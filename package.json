@@ -21,7 +21,7 @@
   ],
   "scripts": {
     "start": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build --target lib --name shine 'src/shine.js'"
   },
   "dependencies": {
     "core-js": "^2.6.5",
