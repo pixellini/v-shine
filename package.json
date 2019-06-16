@@ -1,0 +1,37 @@
+{
+  "name": "v-shine-effect",
+  "version": "0.1.0",
+  "main": "./dist/shine.umd.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jacobgibellini/v-shine-effect"
+  },
+  "keywords": [
+      "Vue",
+      "vue.js",
+      "directive",
+      "ripple",
+      "wave",
+      "effect",
+      "animation",
+      "material ripple",
+      "v-ripple",
+      "vue-ripple"
+  ],
+  "scripts": {
+    "start": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "core-js": "^2.6.5",
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.8.0",
+    "@vue/cli-service": "^3.8.0",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.1.0",
+    "vue-template-compiler": "^2.6.10"
+  }
+}
