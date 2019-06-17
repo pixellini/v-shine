@@ -1,21 +1,21 @@
-# v-shine-effect
+# v-shine
 A Vue directive that creates a shine effect on any element.
 
 ## Installation
 ```
-npm i v-shine-effect
+npm i v-shine
 ```
 
 Registering the directive in Vue:
 ```javascript
 // Global Instance - in your main.js file
-import shine from 'v-shine-effect';
+import shine from 'v-shine';
 
 Vue.use(shine);
 ```
 ```javascript
 // Single Instance
-import shine from 'v-shine-effect';
+import shine from 'v-shine';
 
 new Vue({
   directives: { shine }
