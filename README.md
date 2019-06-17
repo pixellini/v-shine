@@ -26,6 +26,7 @@ new Vue({
 
 |  Property |  Description | Type  | Default  |
 |-----------|--------------|-------|----------|
+| event  | The event the animation will react to on the element.  | String  | 'mouseenter'  |
 | time  | The number of seconds for the shine to complete its animation.  | Number  | 1.5  |
 |  ease |  The easing function of the shine. | String  |  'ease' |
 | color  |  The color of the shine. | String  |  '#fff' |
