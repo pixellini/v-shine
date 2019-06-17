@@ -55,4 +55,4 @@ Shine can be applied onto an element by using "v-shine".
 <button v-shine="{ time: 0.3, ease: 'linear', blur: 10, delay: 1 }"></button>
 ```
 ## Demo
-https://codepen.io/jacobgibellini/pen/mZVGPJ
+https://codepen.io/jacobgibellini/pen/zVqLLd
