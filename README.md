@@ -26,16 +26,16 @@ new Vue({
 
 |  Property |  Description | Type  | Default  |
 |-----------|--------------|-------|----------|
-| time  | The number of seconds for the shine to complete its animation.  | Number or Float  | 1.5  |
+| time  | The number of seconds for the shine to complete its animation.  | Number  | 1.5  |
 |  ease |  The easing function of the shine. | String  |  'ease' |
 | color  |  The color of the shine. | String  |  '#fff' |
-| angle  |  The angle of the shine. This will default to the diagonal length of the element. | String  |   |
-| blur  |  The amount of blur applied on the shine element. | String  |  8 |
-| delay  |  The delay time before the shine animation starts. | String  |  0 |
-| opacity  |  The opacity of the shine. | String  |  0.4 |
-| shineWidth  |  The thickness of the shine bar. This will default to a quarter of the main element's size. | String  |   |
-| fromLeft  |  Determines if the shine will swipe from the left or from the right. | String  |  true |
-| extraShine  |  Adds a trailing shine to add more effect. | String  |  false |
+| angle  |  The angle of the shine. This will default to the diagonal length of the element. | Number  |   |
+| blur  |  The amount of blur applied on the shine element. | Number  |  8 |
+| delay  |  Number of seconds before the shine animation starts. | Number  |  0 |
+| opacity  |  The opacity of the shine. | Number (0 - 1)  |  0.4 |
+| shineWidth  |  The thickness of the shine bar. This will default to a quarter of the main element's size. | Number  |   |
+| fromLeft  |  Determines if the shine will swipe from the left or from the right. | Boolean  |  true |
+| extraShine  |  Adds a trailing shine to add more effect. | Boolean  |  false |
 
 ## Usage
 Shine can be applied onto an element by using "v-shine".
