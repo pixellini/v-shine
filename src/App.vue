@@ -4,7 +4,7 @@
             <button class="btn" v-shine="{ opacity: 0.2, time: 1, ease: 'linear' }">Button hover</button>
             <button class="btn blue" v-shine="{ opacity: 0.2, time: 1, ease: 'linear', event: 'click' }">Click me!</button>
         </div>
-        <div class="card" v-shine="{ fromLeft: false, extraShine: true }">
+        <div class="card" v-shine="{ fromLeft: false, extraShine: true, opacity: 0.5, color: 'rgb(255, 253, 244)' }">
 			<img class="card__image" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Andaman_Beach_-_A_Funstay_day.jpg"/>
 			<div class="card__content">
 				 <h3 class="card__title">The Beach</h3>
