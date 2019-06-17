@@ -1,17 +1,20 @@
+/**
+ * @author Jacob Gibellini
+ * @date 16/06/2019
+ */
 const shine = (el, binding) => {
     const { event, time, ease, angle, blur, color, delay, opacity, shineWidth, fromLeft, extraShine } = binding.value || {};
 
     // Constants
-    const   EVENT = event || 'mouseenter',
-            TIME = time || 1.5, //seconds
-            DELAY = delay || 0,
-            EASE = ease || 'ease-in-out',
-            BLUR_AMOUNT = blur || 8, //px
-            OPACITY = opacity || 0.4,
-            COLOR = color || '#fff',
-            SHINE_DELAY = TIME * 80, //ms
-            FROM_LEFT = fromLeft === undefined ? true : fromLeft,
-            SHOW_NEGATIVE = !FROM_LEFT ? '-' : '';
+    const EVENT = event || 'mouseenter',
+          TIME = time || 1.5, //seconds
+          DELAY = delay || 0,
+          EASE = ease || 'ease',
+          BLUR_AMOUNT = blur || 8, //px
+          OPACITY = opacity || 0.4,
+          COLOR = color || '#fff',
+          SHINE_DELAY = TIME * 80, //ms
+          FROM_LEFT = fromLeft === undefined ? 1 : fromLeft ? 1 : -1; // Default to 1 if false or undefined.
 
     // Toggles
     let SHINE_WIDTH,
@@ -25,13 +28,17 @@ const shine = (el, binding) => {
      */
     const createContainer = () => {
         const container = document.createElement('div');
-        container.style.position = 'absolute';
-        container.style.top = 0;
-        container.style.left = 0;
-        container.style.height = '100%';
-        container.style.width = '100%';
-        container.style.overflow = 'hidden';
-        container.style.filter = `blur(${ BLUR_AMOUNT }px)`;
+        const styles = {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            height: '100%',
+            width: '100%',
+            overflow: 'hidden',
+            filter: `blur(${ BLUR_AMOUNT }px)`
+        }
+
+        Object.keys(styles).forEach(key => container.style[key] = styles[key]);
         return container;
     }
 
@@ -41,16 +48,20 @@ const shine = (el, binding) => {
      */
     const createShineElement = (size, width, shineAngle) => {
         const element = document.createElement('div');
-        element.style.position = 'absolute';
-        element.style.left = '50%' //`calc(${ SHOW_NEGATIVE }50% + ${ -SHINE_WIDTH / 2 }px)`;
-        element.style.top = '-100%' //`calc(${ SHOW_NEGATIVE }50% + ${ -SHINE_WIDTH / 2 }px)`;
-        element.style.transform = `rotate(${ - shineAngle }deg) translate(-50%, -50%)`;
-        element.style.transformOrigin = 'top left';
-        element.style.backgroundColor = COLOR;
-        element.style.height = width + 'px'; // Not actually width, it's only because we are rotating it that it looks like it.
-        element.style.width = size + 'px';
-        element.style.opacity = OPACITY;
-        element.style.transition = `all ${ TIME }s ${ EASE }`;
+        const styles = {
+            position: 'absolute',
+            left: '50%',
+            top: '-100%',
+            transform: `rotate(${ - shineAngle }deg) translate(-50%, -50%)`,
+            transformOrigin: 'top left',
+            backgroundColor: COLOR,
+            height: width + 'px', // Not actually width, it's only because we are rotating it that it looks like it.
+            width: size + 'px',
+            opacity: OPACITY,
+            transition: `all ${ TIME }s ${ EASE }`
+        }
+
+        Object.keys(styles).forEach(key => element.style[key] = styles[key]);
         return element;
     }
 
@@ -63,10 +74,12 @@ const shine = (el, binding) => {
         if (extraShine) {
             const { container, size, top, width, shineAngle } = props;
             // Extra shine element will always be a quarter of the size of the normal shine element.
-            const extraShineElement = createShineElement(size, width / 4, shineAngle);
-            container.appendChild(extraShineElement);
+            const element = createShineElement(size, width / 4, shineAngle);
+            container.appendChild(element);
+
+            // Animate extra shine.
             setTimeout(() => { 
-                extraShineElement.style.top = top 
+                element.style.top = top 
             }, SHINE_DELAY);
         }
     }
@@ -108,6 +121,15 @@ const shine = (el, binding) => {
 
     /**
      * @description
+     * Creates the angle of the shine element.
+     * If no angle is provided, get the Hypotenuse of the element instead.
+     */
+    const getShineAngle = (height, width) => {
+        return angle || FROM_LEFT * ((Math.atan(height / width) * 180) / Math.PI).toString();
+    }
+
+    /**
+     * @description
      * Event handler for when the shine animation should start. 
      */
     const onEventHandler = (e) => {
@@ -122,8 +144,7 @@ const shine = (el, binding) => {
         const width = target.clientWidth;
         const height = target.clientHeight;
         const size = Math.hypot(height, width) * 1.5; // Length of the shine bar.
-        // If no angle is provided, get the Hypotenuse of the element.
-        const shineAngle = angle || SHOW_NEGATIVE + ((Math.atan(height / width) * 180) / Math.PI).toString();
+        const shineAngle = getShineAngle(height, width);
 
         // Determine the height of the shine.
         SHINE_WIDTH = shineWidth || (height > width ? height : width) / 4;
@@ -139,7 +160,7 @@ const shine = (el, binding) => {
 
     el.style.position = 'relative';
     el.addEventListener(EVENT, onEventHandler);
-    el.addEventListener('mouseleave', (e) => {
+    el.addEventListener('mouseleave', e => {
         // Reset
         mouseEntered = false;
     })
