@@ -5,7 +5,7 @@
             <button class="btn blue" v-shine="{ opacity: 0.2, time: 1, ease: 'linear', event: 'click' }">Click me!</button>
         </div>
         <div class="card" v-shine="{ fromLeft: false, extraShine: true, opacity: 0.5, color: 'rgb(255, 253, 244)' }">
-			<img class="card__image" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Andaman_Beach_-_A_Funstay_day.jpg"/>
+			<img class="card__image" src="https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/>
 			<div class="card__content">
 				 <h3 class="card__title">The Beach</h3>
 				 <p class="card__description">A very shine place.</p>
