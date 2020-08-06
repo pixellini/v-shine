@@ -114,7 +114,9 @@ const shine = (el, binding) => {
 
         // Remove the container & shine elements from the DOM.
         setTimeout(() => {
-            el.removeChild(container);
+            if (el) {
+                el.removeChild(container);
+            }
             isAnimating = false;
         }, (TIME * 1000 + SHINE_DELAY) + shineDelay);
     }
@@ -157,7 +159,7 @@ const shine = (el, binding) => {
             shineAngle
         })
     }
-
+    
     el.style.position = 'relative';
     el.addEventListener(EVENT, onEventHandler);
     el.addEventListener('mouseleave', e => {
